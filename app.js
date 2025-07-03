@@ -12,7 +12,6 @@ const loadingScreen = document.getElementById('loading-screen');
 const mainScreen = document.getElementById('main-screen');
 const cameraScreen = document.getElementById('camera-screen');
 const foodCaptureBtn = document.getElementById('food-capture-btn');
-const backToMainBtn = document.getElementById('back-to-main-btn');
 
 const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
@@ -62,7 +61,6 @@ function hideLoadingScreen() {
 function initializeApp() {
    // 메인 화면 이벤트
    foodCaptureBtn.addEventListener('click', showCameraScreen);
-   backToMainBtn.addEventListener('click', showMainScreen);
    
    // 카메라 화면 이벤트
    startCameraBtn.addEventListener('click', startCamera);
