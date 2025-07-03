@@ -444,7 +444,7 @@ body {
 }
 
 .result-card-header h3 {
-    font-size: 24px;
+    font-size: 32px;
     color: #4285f4;
     font-weight: 600;
 }
@@ -476,7 +476,7 @@ body {
 }
 
 .result-card h4 {
-    font-size: 24px;
+    font-size: 32px;
     color: #333;
     margin-bottom: 20px;
     text-align: center;
@@ -512,14 +512,14 @@ body {
 }
 
 .result-label {
-    font-size: 18px;
+    font-size: 32px;
     color: #666;
     font-weight: 600;
     margin-bottom: 5px;
 }
 
 .result-value {
-    font-size: 18px;
+    font-size: 32px;
     color: #333;
     font-weight: 700;
     text-align: right;
@@ -531,7 +531,7 @@ body {
 }
 
 .advice-text {
-    font-size: 16px;
+    font-size: 32px;
     line-height: 1.5;
     color: #555;
     font-weight: 500;
@@ -962,7 +962,7 @@ body {
     
     .result-label,
     .result-value {
-        font-size: 16px;
+        font-size: 32px;
     }
     
     .install-content,
