@@ -126,8 +126,8 @@ body {
     color: #4285f4;
     border: none;
     border-radius: 25px;
-    padding: 20px 60px;
-    font-size: 30px;
+    padding: 15px 50px;
+    font-size: 32px;
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
@@ -278,8 +278,8 @@ body {
     color: #4285f4;
     border: none;
     border-radius: 15px;
-    padding: 15px 30px;
-    font-size: 18px;
+    padding: 12px 25px;
+    font-size: 32px;
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -341,7 +341,7 @@ body {
     color: #ffffff;
     border: none;
     border-radius: 15px;
-    padding: 20px;
+    padding: 15px;
     font-size: 32px;
     font-weight: bold;
     cursor: pointer;
@@ -467,17 +467,18 @@ body {
 .close-result-btn {
     background: none;
     border: none;
-    font-size: 24px;
+    font-size: 32px;
     color: #666;
     cursor: pointer;
     padding: 5px;
     border-radius: 50%;
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
+    font-weight: bold;
 }
 
 .close-result-btn:hover {
@@ -579,8 +580,8 @@ body {
     color: #ffffff;
     border: 1px solid rgba(255,255,255,0.3);
     border-radius: 12px;
-    padding: 12px 20px;
-    font-size: 16px;
+    padding: 10px 18px;
+    font-size: 32px;
     cursor: pointer;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
@@ -635,8 +636,8 @@ body {
     color: white;
     border: none;
     border-radius: 10px;
-    padding: 15px 30px;
-    font-size: 18px;
+    padding: 12px 25px;
+    font-size: 32px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -713,10 +714,10 @@ body {
 }
 
 .install-btn {
-    padding: 15px 30px;
+    padding: 12px 25px;
     border: none;
     border-radius: 12px;
-    font-size: 18px;
+    font-size: 32px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -807,10 +808,10 @@ body {
 }
 
 .update-btn {
-    padding: 10px 20px;
+    padding: 8px 18px;
     border: none;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 32px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -926,8 +927,8 @@ body {
     }
     
     .food-capture-button {
-        font-size: 26px;
-        padding: 18px 50px;
+        font-size: 32px;
+        padding: 12px 40px;
         min-width: 220px;
     }
     
@@ -952,8 +953,18 @@ body {
     }
     
     .analyze-btn {
-        font-size: 28px;
-        padding: 18px;
+        font-size: 32px;
+        padding: 12px;
+    }
+    
+    .retake-btn {
+        font-size: 32px;
+        padding: 10px 20px;
+    }
+    
+    .back-btn {
+        font-size: 32px;
+        padding: 8px 15px;
     }
     
     .result-card-content {
@@ -975,22 +986,38 @@ body {
     }
     
     .install-btn {
-        font-size: 16px;
-        padding: 12px 25px;
+        font-size: 32px;
+        padding: 10px 20px;
         min-width: 100px;
+    }
+    
+    .error-close-btn {
+        font-size: 32px;
+        padding: 10px 20px;
+    }
+    
+    .update-btn {
+        font-size: 32px;
+        padding: 6px 15px;
+    }
+    
+    .close-result-btn {
+        font-size: 32px;
+        width: 45px;
+        height: 45px;
     }
 }
 
 @media (max-width: 360px) {
     .food-capture-button {
-        font-size: 24px;
-        padding: 16px 40px;
+        font-size: 32px;
+        padding: 10px 35px;
         min-width: 200px;
     }
     
     .analyze-btn {
-        font-size: 26px;
-        padding: 16px;
+        font-size: 32px;
+        padding: 10px;
     }
     
     .install-buttons {
@@ -1000,6 +1027,7 @@ body {
     
     .install-btn {
         width: 100%;
+        font-size: 32px;
     }
 }
 
@@ -1078,19 +1106,19 @@ input:focus {
 /* 터치 디바이스 최적화 */
 @media (hover: none) and (pointer: coarse) {
     .food-capture-button:hover,
-    .analyze-btn:hover,
-    .camera-btn:hover,
-    .retake-btn:hover,
-    .back-btn:hover {
-        transform: none;
-        box-shadow: inherit;
-    }
-    
-    .food-capture-button:active,
-    .analyze-btn:active,
-    .camera-btn:active,
-    .retake-btn:active,
-    .back-btn:active {
-        transform: scale(0.95);
-    }
+   .analyze-btn:hover,
+   .camera-btn:hover,
+   .retake-btn:hover,
+   .back-btn:hover {
+       transform: none;
+       box-shadow: inherit;
+   }
+   
+   .food-capture-button:active,
+   .analyze-btn:active,
+   .camera-btn:active,
+   .retake-btn:active,
+   .back-btn:active {
+       transform: scale(0.95);
+   }
 }
