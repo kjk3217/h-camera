@@ -1123,3 +1123,18 @@ input:focus {
        transform: scale(0.95);
    }
 }
+/* 기존 @media (max-width: 480px) 섹션 안에 추가 */
+@media (max-width: 480px) {
+    .camera-area {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+/* 기존 @media (max-width: 360px) 섹션 안에 추가 */
+@media (max-width: 360px) {
+    .camera-area {
+        width: 280px;
+        height: 280px;
+    }
+}
