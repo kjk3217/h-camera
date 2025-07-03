@@ -1,0 +1,407 @@
+/* 기본 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Malgun Gothic', Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.6;
+    font-size: 18px; /* 시니어 친화적 큰 글꼴 */
+}
+
+.container {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* 헤더 스타일 */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.header h1 {
+    font-size: 32px;
+    color: #1976d2;
+    margin-bottom: 10px;
+}
+
+.header p {
+    font-size: 20px;
+    color: #666;
+}
+
+/* 메인 콘텐츠 */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* 카메라 섹션 */
+.camera-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.camera-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #000;
+}
+
+#video {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.photo-preview {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+}
+
+#captured-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.camera-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+/* 버튼 스타일 - 3D 클래식 효과 */
+.btn {
+    font-size: 20px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    box-shadow: 0 6px 0 #000, 0 8px 15px rgba(0,0,0,0.3);
+    position: relative;
+    top: 0;
+    width: 100%;
+    max-width: 300px;
+}
+
+.btn:hover {
+    top: 2px;
+    box-shadow: 0 4px 0 #000, 0 6px 10px rgba(0,0,0,0.3);
+}
+
+.btn:active {
+    top: 6px;
+    box-shadow: 0 0 0 #000, 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #388e3c 0%, #2e7d32 100%);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+    color: white;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #f57c00 0%, #ef6c00 100%);
+}
+
+.btn-outline {
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    color: #333;
+    border: 2px solid #ccc;
+}
+
+.btn-outline:hover {
+    background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%);
+}
+
+/* 분석 섹션 */
+.analysis-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* 로딩 스타일 */
+.loading {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #2196f3;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 결과 섹션 */
+.result-container {
+    background: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+.result-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.result-header h2 {
+    font-size: 28px;
+    color: #1976d2;
+}
+
+.result-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.food-info, .diabetes-prediction {
+    padding: 15px;
+    border-radius: 10px;
+    background: #f8f9fa;
+}
+
+.food-info h3, .diabetes-prediction h3 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.food-info p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.prediction-value {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.prediction-value span:first-child {
+    font-size: 48px;
+    font-weight: bold;
+    color: #2196f3;
+}
+
+.unit {
+    font-size: 24px;
+    color: #666;
+    margin-left: 10px;
+}
+
+.prediction-status {
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.status-normal {
+    background: #e8f5e8;
+    color: #2e7d32;
+}
+
+.status-warning {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+.status-danger {
+    background: #ffebee;
+    color: #d32f2f;
+}
+
+.recommendations h4 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.recommendations ul {
+    list-style: none;
+    padding: 0;
+}
+
+.recommendations li {
+    padding: 8px 0;
+    font-size: 18px;
+    color: #666;
+    border-bottom: 1px solid #eee;
+}
+
+.recommendations li:last-child {
+    border-bottom: none;
+}
+
+/* 히스토리 섹션 */
+.history-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.history-content {
+    margin-top: 20px;
+}
+
+.history-content h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.history-item {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border-left: 4px solid #2196f3;
+}
+
+.history-item-date {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.history-item-food {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.history-item-glucose {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2196f3;
+}
+
+/* 푸터 */
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    background: #fff3e0;
+    border-radius: 10px;
+    border-left: 4px solid #ff9800;
+}
+
+.footer p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .header h1 {
+        font-size: 28px;
+    }
+    
+    .header p {
+        font-size: 18px;
+    }
+    
+    .btn {
+        font-size: 18px;
+        padding: 12px 25px;
+    }
+    
+    .prediction-value span:first-child {
+        font-size: 40px;
+    }
+    
+    .unit {
+        font-size: 20px;
+    }
+}
+
+/* PWA 설치 프롬프트 */
+.install-prompt {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2196f3;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    z-index: 1000;
+    max-width: 90%;
+    text-align: center;
+}
+
+.install-prompt button {
+    background: white;
+    color: #2196f3;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    margin-left: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}

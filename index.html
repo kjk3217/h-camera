@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>당뇨 예측 앱</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2196F3">
+    <meta name="description" content="음식 사진으로 당뇨 수치를 예측하는 앱">
+    <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🍎 당뇨 예측 앱</h1>
+            <p>음식 사진을 찍어서 당뇨 수치를 확인하세요</p>
+        </header>
+
+        <main class="main-content">
+            <!-- 카메라 섹션 -->
+            <div class="camera-section">
+                <div class="camera-container">
+                    <video id="video" autoplay playsinline></video>
+                    <canvas id="canvas" style="display: none;"></canvas>
+                    <div id="photo-preview" class="photo-preview" style="display: none;">
+                        <img id="captured-image" alt="촬영된 사진">
+                    </div>
+                </div>
+                
+                <div class="camera-controls">
+                    <button id="start-camera-btn" class="btn btn-primary">
+                        📷 카메라 시작
+                    </button>
+                    <button id="capture-btn" class="btn btn-secondary" style="display: none;">
+                        📸 사진 찍기
+                    </button>
+                    <button id="retake-btn" class="btn btn-outline" style="display: none;">
+                        🔄 다시 찍기
+                    </button>
+                </div>
+            </div>
+
+            <!-- 분석 섹션 -->
+            <div class="analysis-section">
+                <button id="analyze-btn" class="btn btn-success" style="display: none;">
+                    🔍 음식 분석하기
+                </button>
+                
+                <div id="loading" class="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>음식을 분석하고 있습니다...</p>
+                </div>
+                
+                <div id="result" class="result-container" style="display: none;">
+                    <div class="result-header">
+                        <h2>📊 분석 결과</h2>
+                    </div>
+                    <div class="result-content">
+                        <div class="food-info">
+                            <h3>🍽️ 음식 정보</h3>
+                            <p id="food-name"></p>
+                            <p id="food-description"></p>
+                        </div>
+                        <div class="diabetes-prediction">
+                            <h3>🩺 당뇨 수치 예측</h3>
+                            <div class="prediction-value">
+                                <span id="glucose-level"></span>
+                                <span class="unit">mg/dL</span>
+                            </div>
+                            <div class="prediction-status" id="prediction-status"></div>
+                            <div class="recommendations">
+                                <h4>💡 권장사항</h4>
+                                <ul id="recommendations-list"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 히스토리 섹션 -->
+            <div class="history-section">
+                <button id="history-btn" class="btn btn-outline">
+                    📋 분석 기록 보기
+                </button>
+                <div id="history-content" class="history-content" style="display: none;">
+                    <h3>📅 분석 기록</h3>
+                    <div id="history-list"></div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>⚠️ 이 앱은 참고용이며, 정확한 진단은 의료진과 상담하세요.</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
