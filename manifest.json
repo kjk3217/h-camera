@@ -1,55 +1,27 @@
 {
-  "name": "당뇨 예측 앱",
-  "short_name": "당뇨예측",
+  "name": "음식 분석 앱",
+  "short_name": "음식 분석",
   "description": "음식 사진으로 당뇨 수치를 예측하는 시니어 친화적 앱",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#2196F3",
+  "theme_color": "#4285f4",
   "orientation": "portrait",
   "scope": "./",
   "lang": "ko",
   "categories": ["health", "medical", "lifestyle"],
   "icons": [
     {
-      "src": "icon-72.png",
-      "sizes": "72x72",
-      "type": "image/png"
-    },
-    {
-      "src": "icon-96.png",
-      "sizes": "96x96",
-      "type": "image/png"
-    },
-    {
-      "src": "icon-128.png",
-      "sizes": "128x128",
-      "type": "image/png"
-    },
-    {
-      "src": "icon-144.png",
-      "sizes": "144x144",
-      "type": "image/png"
-    },
-    {
-      "src": "icon-152.png",
-      "sizes": "152x152",
-      "type": "image/png"
-    },
-    {
       "src": "icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "icon-384.png",
-      "sizes": "384x384",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
   "screenshots": [
@@ -57,13 +29,15 @@
       "src": "screenshot1.png",
       "sizes": "390x844",
       "type": "image/png",
-      "form_factor": "narrow"
+      "form_factor": "narrow",
+      "label": "메인 화면"
     },
     {
       "src": "screenshot2.png",
       "sizes": "390x844",
       "type": "image/png",
-      "form_factor": "narrow"
+      "form_factor": "narrow",
+      "label": "카메라 화면"
     }
   ],
   "shortcuts": [
@@ -78,25 +52,10 @@
           "sizes": "192x192"
         }
       ]
-    },
-    {
-      "name": "분석 기록",
-      "short_name": "기록",
-      "description": "이전 분석 결과를 확인합니다",
-      "url": "./index.html?action=history",
-      "icons": [
-        {
-          "src": "icon-192.png",
-          "sizes": "192x192"
-        }
-      ]
     }
   ],
   "related_applications": [],
   "prefer_related_applications": false,
-  "edge_side_panel": {
-    "preferred_width": 400
-  },
   "launch_handler": {
     "client_mode": "navigate-existing"
   }
