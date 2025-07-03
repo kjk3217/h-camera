@@ -251,10 +251,11 @@ body {
 /* 카메라 제어 버튼 */
 .camera-controls-new {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-bottom: 30px;
     padding: 0 20px;
+    gap: 20px;
 }
 
 .retake-btn {
