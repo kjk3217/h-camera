@@ -94,12 +94,12 @@ body {
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 300px;
+    max-width: 400px;
 }
 
 .main-logo {
     width: 100%;
-    max-width: 350px;
+    max-width: 400px;
     height: auto;
     object-fit: contain;
     border-radius: 20px;
