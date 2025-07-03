@@ -228,12 +228,25 @@ function capturePhoto() {
    try {
        const context = canvas.getContext('2d');
        
-       // 캔버스 크기를 비디오 크기에 맞춤
-       canvas.width = video.videoWidth;
-       canvas.height = video.videoHeight;
-       
-       // 비디오 프레임을 캔버스에 그리기
-       context.drawImage(video, 0, 0, canvas.width, canvas.height);
+// 비디오의 실제 크기
+const videoWidth = video.videoWidth;
+const videoHeight = video.videoHeight;
+
+// 1:1 비율로 크롭하기 위한 계산
+const size = Math.min(videoWidth, videoHeight);
+const startX = (videoWidth - size) / 2;
+const startY = (videoHeight - size) / 2;
+
+// 캔버스를 1:1 비율로 설정
+canvas.width = size;
+canvas.height = size;
+
+// 중앙 부분만 크롭하여 그리기
+context.drawImage(
+    video,
+    startX, startY, size, size,  // 소스 영역 (크롭할 부분)
+    0, 0, size, size             // 대상 영역 (캔버스 전체)
+);
        
        // 이미지 데이터 추출 (품질 0.9)
        capturedImageData = canvas.toDataURL('image/jpeg', 0.9);
