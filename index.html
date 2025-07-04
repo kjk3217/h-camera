@@ -1,175 +1,31 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>음식 분석 앱</title>
-    <link rel="stylesheet" href="style.css">
-    
-    <!-- PWA 설정 -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#4285f4">
-    <meta name="description" content="음식 사진으로 당뇨 수치를 예측하는 앱">
-    
-    <!-- iOS PWA 지원 -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="음식 분석">
-    <link rel="apple-touch-icon" href="icon-192.png">
-    <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png">
-    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png">
-    
-    <!-- 파비콘 -->
-    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
-    
-    <!-- 메타 태그 -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="음식 분석">
-    <meta name="msapplication-TileColor" content="#4285f4">
-    <meta name="msapplication-TileImage" content="icon-192.png">
-    
-    <!-- 소셜 메타 태그 -->
-    <meta property="og:title" content="음식 분석 앱">
-    <meta property="og:description" content="음식 사진으로 당뇨 수치를 예측하는 시니어 친화적 앱">
-    <meta property="og:image" content="icon-512.png">
-    <meta property="og:url" content="./">
-    <meta property="og:type" content="website">
-    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="음식 분석 앱">
-    <meta name="twitter:description" content="음식 사진으로 당뇨 수치를 예측하는 시니어 친화적 앱">
-    <meta name="twitter:image" content="icon-512.png">
-    
-    <!-- 프리로드 -->
-    <link rel="preload" href="style.css" as="style">
-    <link rel="preload" href="app.js" as="script">
-    <link rel="preload" href="main-logo.png" as="image">
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#3687ff" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+  <title>음식 분석 앱</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- 로딩 스크린 -->
-    <div id="loading-screen" class="loading-screen">
-        <div class="loading-content">
-            <div class="loading-logo">🍎</div>
-            <h2>음식 분석 앱</h2>
-            <div class="loading-spinner"></div>
-            <p>앱을 준비하고 있습니다...</p>
-        </div>
-    </div>
+  <main id="homeApp">
+    <img id="logoImage" src="logo-image.png" alt="앱 로고" />
 
-    <!-- 메인 화면 -->
-    <div class="main-screen" id="main-screen" style="display: none;">
-        <div class="logo-section">
-            <img src="main-logo.png" alt="앱 로고" class="main-logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'logo-fallback\'>🍎<br>음식 분석</div>'">
-        </div>
-        
-        <div class="button-section">
-            <button id="food-capture-btn" class="food-capture-button" aria-label="음식 촬영 시작">
-                음식 촬영
-            </button>
-        </div>
-        
-        <div class="version-section">
-            <p class="version-text">음식 분석 앱 v1.0</p>
-        </div>
-    </div>
+    <a href="capture.html" id="startBtn" class="btn-3d" role="button">
+      음식 촬영
+    </a>
 
-    <!-- 카메라 화면 -->
-    <div class="camera-screen" id="camera-screen" style="display: none;">
-        <!-- 기존 헤더 제거됨 -->
-        
-        <!-- 카메라 영역 -->
-        <div class="camera-area">
-            <video id="video" autoplay playsinline muted style="display: none;" aria-label="카메라 미리보기"></video>
-            <canvas id="canvas" style="display: none;"></canvas>
-            <div id="photo-preview" class="photo-preview" style="display: none;">
-                <img id="captured-image" alt="촬영된 사진">
-            </div>
-            <div id="camera-placeholder" class="camera-placeholder">
-                <div class="camera-icon">📷</div>
-                <p>카메라를 시작하세요</p>
-            </div>
-        </div>
-        
-        <!-- 카메라 제어 버튼 -->
-        <div class="camera-controls-new">
-            <button id="retake-btn" class="retake-btn" style="display: none;" aria-label="다시 촬영">
-                재촬영
-            </button>
-            <button id="camera-btn" class="camera-btn" style="display: none;" aria-label="사진 촬영">
-                <div class="camera-circle"></div>
-            </button>
-        </div>
-        
-        <!-- 분석 버튼 -->
-        <div class="analysis-button-section">
-            <button id="analyze-btn" class="analyze-btn" style="display: none;" aria-label="음식 분석 시작">
-                분석 하기
-            </button>
-            <button id="start-camera-btn" class="analyze-btn" aria-label="카메라 시작">
-                카메라 시작
-            </button>
-        </div>
-        
-        <!-- 로딩 -->
-        <div id="loading" class="loading-new" style="display: none;">
-            <div class="spinner-new"></div>
-            <p>음식을 분석하고 있습니다...</p>
-            <div class="loading-dots">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-        
-        <!-- 분석 결과 카드 -->
-        <div id="result-card" class="result-card" style="display: none;">
-            <div class="result-card-header">
-                <h3>📊 분석 결과</h3>
-                <button id="close-result-btn" class="close-result-btn" aria-label="결과 닫기">✕</button>
-            </div>
-            <div class="result-card-content">
-                <h4 id="food-name-result">음식 이름</h4>
-                <div class="result-grid">
-                    <div class="result-item">
-                        <span class="result-label">혈당 영향도</span>
-                        <span id="glucose-impact" class="result-value impact-medium">중간</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-label">주요 성분</span>
-                        <span id="main-ingredients" class="result-value">탄수화물, 단백질</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-label">예상 GI</span>
-                        <span id="gi-value" class="result-value">70</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-label">탄수화물</span>
-                        <span id="carb-amount" class="result-value">30g</span>
-                    </div>
-                    <div class="result-item full-width">
-                        <span class="result-label">식이 조언</span>
-                        <span id="dietary-advice" class="result-value advice-text">적당량 섭취 권장</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <p id="disclaimer">
+      이 앱은 참고용이며,<br/>
+      정확한 진단은 의료진과 상담하세요
+    </p>
+  </main>
 
-    <!-- 에러 메시지 -->
-    <div id="error-message" class="error-message" style="display: none;">
-        <div class="error-content">
-            <h3>⚠️ 오류 발생</h3>
-            <p id="error-text">문제가 발생했습니다.</p>
-            <button id="error-close-btn" class="error-close-btn">확인</button>
-        </div>
-    </div>
-
-    <!-- 푸터 면책 조항 -->
-    <div class="footer-disclaimer">
-        <p>⚠️ 이 앱은 참고용이며, 정확한 진단은 의료진과 상담하세요.</p>
-    </div>
-
-    <script src="app.js"></script>
+  <script src="app.js" defer></script>
 </body>
 </html>
