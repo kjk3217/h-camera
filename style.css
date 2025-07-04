@@ -32,9 +32,9 @@ body {
 }
 
 .logo {
-    width: 400px;
-    height: 400px;
-    border-radius: 30px;
+    width: 500px;
+    height: 500px;
+    border-radius: 10px;
     object-fit: cover;
 }
 
@@ -243,8 +243,8 @@ body {
 }
 
 .result-content {
-    font-size: 33px;
-    line-height: 1.6;
+    font-size: 40px;
+    line-height: 1.2;
     color: #123440;
 }
 
