@@ -1,31 +1,56 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#3687ff" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-
-  <title>음식 분석 앱</title>
-  <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#30b7ba">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="음식 분석">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="msapplication-TileColor" content="#30b7ba">
+    <meta name="msapplication-TileImage" content="icon-192.png">
+    <meta name="description" content="당뇨 수치 예측을 위한 음식 분석 앱">
+    
+    <title>음식 분석 앱</title>
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="icon-192.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icon-192.png">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icon-192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="icon-192.png">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    
+    <meta name="format-detection" content="telephone=no">
+    <meta name="HandheldFriendly" content="true">
 </head>
 <body>
-  <main id="homeApp">
-    <img id="logoImage" src="logo-image.png" alt="앱 로고" />
-
-    <a href="capture.html" id="startBtn" class="btn-3d" role="button">
-      음식 촬영
-    </a>
-
-    <p id="disclaimer">
-      이 앱은 참고용이며,<br/>
-      정확한 진단은 의료진과 상담하세요
-    </p>
-  </main>
-
-  <script src="app.js" defer></script>
+    <div class="container">
+        <div class="header">
+            <img src="logo-image.png" alt="당뇨 예측 앱" class="logo">
+        </div>
+        
+        <div class="main-content">
+            <button id="captureBtn" class="capture-button">
+                <span>음식 촬영</span>
+            </button>
+            
+            <p class="info-text">
+                이 앱은 참고용이며,<br>
+                정확한 진료는 의료진과 상담하세요
+            </p>
+        </div>
+    </div>
+    
+    <div id="installPrompt" class="install-prompt">
+        <p>홈 화면에 앱을 추가하시겠습니까?</p>
+        <button id="installBtn" class="install-button">설치</button>
+        <button id="cancelBtn" class="cancel-button">나중에</button>
+    </div>
+    
+    <script src="app.js"></script>
 </body>
 </html>

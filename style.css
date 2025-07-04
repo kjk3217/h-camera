@@ -1,29 +1,466 @@
-:root{
-  --bg:#ffffff; --blue:#5c80ff; --pink:#ffb4c9;
-  --radius:18px; --shadow-up:0 8px 0 rgba(0,0,0,.25);
-  --shadow-down:0 2px 0 rgba(0,0,0,.25); --font-big:32px;
-  font-family:"Pretendard","Apple SD Gothic Neo",sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
-*{box-sizing:border-box;} html,body{margin:0;height:100%;background:var(--bg);color:#000;}
-button,a{font-size:var(--font-big);font-weight:600;border:none;background:none;cursor:pointer;color:inherit;}
-a{text-decoration:none;} :focus-visible{outline:3px solid #000;outline-offset:2px;}
 
-.btn-3d,button{display:inline-flex;align-items:center;justify-content:center;
-  border-radius:var(--radius);box-shadow:var(--shadow-up);transition:.05s;}
-.btn-3d:active,button:active{transform:translateY(6px);box-shadow:var(--shadow-down);}
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #30b7ba;
+    color: #123440;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
-/* 홈 화면 */
-#homeApp{min-height:100%;padding:40px 20px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;}
-#logoImage{max-width:70%;height:auto;} #startBtn{width:80vw;max-width:480px;height:120px;background:var(--blue);color:#fff;}
-#disclaimer{font-size:var(--font-big);line-height:1.4;}
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 20px;
+    max-width: 480px;
+    margin: 0 auto;
+}
 
-/* 촬영 화면 */
-.capture-screen{background:var(--blue);}
-#captureApp{min-height:100%;padding:32px 18px 60px;display:flex;flex-direction:column;align-items:center;}
-#cameraBox{width:90vw;max-width:480px;aspect-ratio:1/1;background:#fff;border-radius:var(--radius);position:relative;overflow:hidden;margin-bottom:20px;display:flex;align-items:center;justify-content:center;}
-#cameraBox input{position:absolute;inset:0;opacity:0;cursor:pointer;} #previewImg{width:100%;height:100%;object-fit:cover;display:none;}
-#shootPanel{display:flex;gap:16px;margin-bottom:20px;} #recaptureBtn{padding:12px 28px;background:#fff;box-shadow:var(--shadow-up);min-width:180px;border-radius:var(--radius);}
-#shutterBtn{width:120px;height:120px;border-radius:50%;background:#fff;box-shadow:var(--shadow-up);}
-#analyzeBtn{width:90vw;max-width:480px;height:120px;background:var(--pink);box-shadow:var(--shadow-up);}
-#resultCard{width:90vw;max-width:480px;background:#fff;border-radius:var(--radius);margin-top:30px;padding:28px 24px;box-shadow:0 4px 10px rgba(0,0,0,.15);transform:translateY(120%);opacity:0;transition:.4s ease-out;}
-#resultCard.show{transform:translateY(0);opacity:1;} #analysisText{white-space:pre-wrap;text-align:left;}
+.header {
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+.logo {
+    width: 200px;
+    height: 200px;
+    border-radius: 30px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    object-fit: cover;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 100px;
+}
+
+.capture-button {
+    background-color: white;
+    color: #123440;
+    border: 3px solid #123440;
+    border-radius: 15px;
+    padding: 25px 60px;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 8px 0 #123440;
+    transform: translateY(0);
+    transition: all 0.1s ease;
+    margin-bottom: 60px;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.capture-button:active {
+    transform: translateY(6px);
+    box-shadow: 0 2px 0 #123440;
+}
+
+.info-text {
+    font-size: 20px;
+    text-align: center;
+    line-height: 1.5;
+    color: #123440;
+    opacity: 0.9;
+}
+
+/* 카메라 화면 스타일 */
+.camera-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 1000;
+    display: none;
+}
+
+.camera-view {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.camera-controls {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 0 20px;
+}
+
+.camera-button {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 4px solid white;
+    background-color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.camera-button:active {
+    transform: scale(0.9);
+}
+
+.close-camera {
+    background-color: rgba(255, 0, 0, 0.5);
+    width: 60px;
+    height: 60px;
+}
+
+/* 캡처 결과 화면 스타일 */
+.capture-result {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #30b7ba;
+    z-index: 1000;
+    display: none;
+    flex-direction: column;
+    padding: 20px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.capture-preview {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 1/1;
+    margin: 40px auto 30px;
+    border: 8px solid #123440;
+    border-radius: 30px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.captured-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.capture-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.action-button {
+    color: #123440;
+    border: 3px solid #123440;
+    border-radius: 15px;
+    padding: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 8px 0 #123440;
+    transform: translateY(0);
+    transition: all 0.1s ease;
+    text-align: center;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.action-button:active {
+    transform: translateY(6px);
+    box-shadow: 0 2px 0 #123440;
+}
+
+.action-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.retake-button {
+    background-color: #a8d18d;
+}
+
+.analyze-button {
+    background-color: #fed966;
+}
+
+/* 분석 결과 카드 스타일 */
+.analysis-results {
+    display: none;
+    max-width: 400px;
+    width: 100%;
+    margin: 20px auto 0;
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.result-card {
+    background-color: white;
+    border: 3px solid #123440;
+    border-radius: 20px;
+    padding: 30px;
+    margin-top: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.result-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #123440;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.result-content {
+    font-size: 24px;
+    line-height: 1.6;
+    color: #123440;
+}
+
+.result-item {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.result-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.result-label {
+    font-weight: bold;
+    color: #123440;
+}
+
+.blood-sugar-high {
+    color: #ff4444;
+    font-weight: bold;
+}
+
+.blood-sugar-medium {
+    color: #ffa500;
+    font-weight: bold;
+}
+
+.blood-sugar-low {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.home-button {
+    background-color: white;
+    color: #123440;
+    border: 3px solid #123440;
+    border-radius: 15px;
+    padding: 15px 30px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 6px 0 #123440;
+    transform: translateY(0);
+    transition: all 0.1s ease;
+    margin: 20px auto;
+    display: block;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.home-button:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #123440;
+}
+
+/* PWA 설치 프롬프트 */
+.install-prompt {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background-color: white;
+    border: 3px solid #123440;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-align: center;
+    display: none;
+    animation: slideUp 0.3s ease-out;
+}
+
+.install-prompt p {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #123440;
+}
+
+.install-button, .cancel-button {
+    background-color: #30b7ba;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0 10px;
+    box-shadow: 0 4px 0 #123440;
+    transform: translateY(0);
+    transition: all 0.1s ease;
+}
+
+.install-button:active, .cancel-button:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 #123440;
+}
+
+.cancel-button {
+    background-color: #999;
+}
+
+/* 로딩 애니메이션 */
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-text {
+    margin-top: 20px;
+    font-size: 24px;
+    color: white;
+}
+
+/* iOS 안전 영역 대응 */
+@supports (padding: max(0px)) {
+    .container {
+        padding-top: max(20px, env(safe-area-inset-top));
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+    }
+    
+    .camera-controls {
+        bottom: max(30px, env(safe-area-inset-bottom));
+    }
+    
+    .install-prompt {
+        bottom: max(20px, env(safe-area-inset-bottom));
+    }
+}
+
+/* 설치된 앱 모드에서 스타일 조정 */
+@media all and (display-mode: standalone) {
+    body {
+        -webkit-user-select: none;
+        user-select: none;
+    }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .header {
+        padding-top: 40px;
+        padding-bottom: 30px;
+    }
+    
+    .logo {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .capture-button {
+        padding: 20px 50px;
+        font-size: 28px;
+    }
+    
+    .info-text {
+        font-size: 18px;
+    }
+    
+    .capture-preview {
+        margin: 20px auto 20px;
+    }
+    
+    .action-button {
+        font-size: 28px;
+        padding: 18px;
+    }
+    
+    .result-title {
+        font-size: 28px;
+    }
+    
+    .result-content {
+        font-size: 20px;
+    }
+}
+
+/* 작은 화면 대응 */
+@media (max-height: 600px) {
+    .header {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    
+    .logo {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .main-content {
+        padding-bottom: 50px;
+    }
+}
