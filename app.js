@@ -186,19 +186,40 @@ function closeCamera() {
     }
 }
 
-function takePicture(video) {
+function takePictureSquare(video, container) {
     const canvas = document.createElement('canvas');
-    const size = Math.min(video.videoWidth, video.videoHeight);
-    canvas.width = size;
-    canvas.height = size;
+    
+    // 컨테이너의 실제 크기를 기준으로 캡처
+    const containerRect = container.getBoundingClientRect();
+    const size = Math.min(containerRect.width, containerRect.height);
+    
+    // 고해상도로 캡처 (실제 표시 크기의 2배)
+    const captureSize = size * 2;
+    canvas.width = captureSize;
+    canvas.height = captureSize;
     
     const ctx = canvas.getContext('2d');
-    const sx = (video.videoWidth - size) / 2;
-    const sy = (video.videoHeight - size) / 2;
     
-    ctx.drawImage(video, sx, sy, size, size, 0, 0, size, size);
+    // 비디오에서 정사각형 영역 계산
+    const videoAspect = video.videoWidth / video.videoHeight;
+    let sourceSize, sx, sy;
     
-    currentImageData = canvas.toDataURL('image/jpeg', 0.8);
+    if (videoAspect > 1) {
+        // 가로가 더 긴 경우
+        sourceSize = video.videoHeight;
+        sx = (video.videoWidth - sourceSize) / 2;
+        sy = 0;
+    } else {
+        // 세로가 더 긴 경우
+        sourceSize = video.videoWidth;
+        sx = 0;
+        sy = (video.videoHeight - sourceSize) / 2;
+    }
+    
+    // 정사각형으로 크롭하여 캔버스에 그리기
+    ctx.drawImage(video, sx, sy, sourceSize, sourceSize, 0, 0, captureSize, captureSize);
+    
+    currentImageData = canvas.toDataURL('image/jpeg', 0.85);
     
     closeCamera();
     showCaptureResult();
