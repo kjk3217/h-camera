@@ -135,15 +135,6 @@ function openCamera() {
     captureButton.onclick = () => takePictureSquare(video, videoContainer);
     captureButton.setAttribute('aria-label', '사진 촬영');
     
-    const closeButton = document.createElement('button');
-    closeButton.className = 'camera-button close-camera';
-    closeButton.onclick = closeCamera;
-    closeButton.setAttribute('aria-label', '카메라 닫기');
-    closeButton.innerHTML = '✕';
-    closeButton.style.fontSize = '24px';
-    closeButton.style.color = 'white';
-    
-    controls.appendChild(closeButton);
     controls.appendChild(captureButton);
     
     videoContainer.appendChild(video);
