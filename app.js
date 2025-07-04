@@ -357,7 +357,7 @@ function showAnalysisResult(data) {
     
     resultsDiv.innerHTML = `
         <div class="result-card">
-            <h3 class="result-title">분석 결과</h3>
+            <h3 class="result-title">■ 분석 결과 ■</h3>
             <div class="result-content">
                 <div class="result-item">
                     <span class="result-label">음식 이름:</span> ${data.foodName || '알 수 없음'}
