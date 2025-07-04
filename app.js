@@ -105,24 +105,49 @@ function openCamera() {
     const cameraContainer = document.createElement('div');
     cameraContainer.className = 'camera-container';
     cameraContainer.style.display = 'flex';
+    cameraContainer.style.flexDirection = 'column';
+    cameraContainer.style.justifyContent = 'center';
+    cameraContainer.style.alignItems = 'center';
+    
+    // 1:1 비율 비디오 컨테이너 생성
+    const videoContainer = document.createElement('div');
+    videoContainer.style.width = '90vw';
+    videoContainer.style.maxWidth = '400px';
+    videoContainer.style.aspectRatio = '1/1';
+    videoContainer.style.overflow = 'hidden';
+    videoContainer.style.borderRadius = '20px';
+    videoContainer.style.border = '3px solid white';
+    videoContainer.style.position = 'relative';
     
     const video = document.createElement('video');
-    video.className = 'camera-view';
     video.autoplay = true;
     video.playsInline = true;
     video.muted = true;
+    video.style.width = '100%';
+    video.style.height = '100%';
+    video.style.objectFit = 'cover';
     
     const controls = document.createElement('div');
     controls.className = 'camera-controls';
     
     const captureButton = document.createElement('button');
     captureButton.className = 'camera-button';
-    captureButton.onclick = () => takePicture(video);
+    captureButton.onclick = () => takePictureSquare(video, videoContainer);
     captureButton.setAttribute('aria-label', '사진 촬영');
     
+    const closeButton = document.createElement('button');
+    closeButton.className = 'camera-button close-camera';
+    closeButton.onclick = closeCamera;
+    closeButton.setAttribute('aria-label', '카메라 닫기');
+    closeButton.innerHTML = '✕';
+    closeButton.style.fontSize = '24px';
+    closeButton.style.color = 'white';
+    
+    controls.appendChild(closeButton);
     controls.appendChild(captureButton);
     
-    cameraContainer.appendChild(video);
+    videoContainer.appendChild(video);
+    cameraContainer.appendChild(videoContainer);
     cameraContainer.appendChild(controls);
     
     document.body.appendChild(cameraContainer);
