@@ -145,8 +145,8 @@ body {
 }
 
 .capture-preview {
-    width: 100%;
-    max-width: 400px;
+    width: 80%;
+    max-width: 320px;
     aspect-ratio: 1/1;
     margin: 40px auto 30px;
     border: 8px solid #123440;
@@ -159,7 +159,8 @@ body {
 .captured-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    background-color: #f0f0f0;
 }
 
 .capture-actions {
